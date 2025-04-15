@@ -191,6 +191,3 @@ Esta documentação descreve as operações disponíveis na API de vendas, inclu
 
 2. **Eventos de Venda** (opcional):
    - Registre eventos de Venda Criada, Modificada e Cancelada, bem como Itens Cancelados, no log de aplicação.
-
-Esta documentação fornece uma visão geral das funcionalidades básicas e regras da API de vendas. Para detalhes completos e exemplos de implementação, consulte o código fonte no repositório do projeto.
-```

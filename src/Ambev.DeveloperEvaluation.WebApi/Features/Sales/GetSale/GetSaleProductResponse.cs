@@ -1,9 +1,6 @@
-﻿namespace Ambev.DeveloperEvaluation.Domain.Entities;
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
 
-/// <summary>
-/// Represents a product in a sale.
-/// </summary>
-public class SaleProduct
+public class GetSaleProductResponse
 {
     /// <summary>
     /// Gets or sets the unique identifier of the sale product relationship.
@@ -39,9 +36,4 @@ public class SaleProduct
     /// Gets or sets the total amount for the product (after applying the discount).
     /// </summary>
     public decimal TotalItemAmount { get; set; }
-
-    /// <summary>
-    /// Propriedade de navegação para Sale
-    /// </summary>
-    public Sale Sale { get; set; } = new Sale();
 }

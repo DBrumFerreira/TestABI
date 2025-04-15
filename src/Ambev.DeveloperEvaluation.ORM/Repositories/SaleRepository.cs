@@ -39,7 +39,43 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         /// <returns>The sale if found, null otherwise</returns>
         public async Task<Sale?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _context.Sales.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
+            return await _context.Sales.Include(s => s.SaleProducts)
+                                       .FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
+        }
+
+
+        /// <summary>
+        /// Cancel a sale from the database
+        /// </summary>
+        /// <param name="id">The unique identifier of the sale to cancel</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>True if the sale was canceled, false if not found</returns>
+        public async Task<bool> CancelAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            var sale = await GetByIdAsync(id, cancellationToken);
+            if (sale == null)
+                return false;
+
+            sale.IsCancelled = true;
+
+            _context.Sales.Update(sale);
+            await _context.SaveChangesAsync(cancellationToken);
+            return true;
+        }
+
+
+        /// <summary>
+        /// Update a sale from the database
+        /// </summary>
+        /// <param name="id">The unique identifier of the sale to update</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>True if the sale was updated, false if not found</returns>
+        public async Task<Sale> UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
+        {
+            _context.Sales.Update(sale);
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return sale;
         }
     }
 }

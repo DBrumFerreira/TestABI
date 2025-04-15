@@ -11,7 +11,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
-public class ProductController : BaseController
+public class ProductsController : BaseController
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ public class ProductController : BaseController
     /// </summary>
     /// <param name="mediator">The mediator instance</param>
     /// <param name="mapper">The AutoMapper instance</param>
-    public ProductController(IMediator mediator, IMapper mapper)
+    public ProductsController(IMediator mediator, IMapper mapper)
     {
         _mediator = mediator;
         _mapper = mapper;

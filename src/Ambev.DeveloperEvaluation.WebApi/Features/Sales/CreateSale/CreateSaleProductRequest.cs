@@ -1,6 +1,6 @@
 ﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
 
-public class SaleProductRequest
+public class CreateSaleProductRequest
 {
     /// <summary>
     /// Gets or sets the quantity of the product sold.
@@ -10,5 +10,5 @@ public class SaleProductRequest
     /// <summary>
     /// Gets or sets the product being sold.
     /// </summary>
-    public ProductRequest? Product { get; set; } = null;
+    public CreateProductRequest? Product { get; set; } = null;
 }

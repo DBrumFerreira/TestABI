@@ -18,6 +18,11 @@ public class SaleProductConfiguration : IEntityTypeConfiguration<SaleProduct>
         builder.Property(sp => sp.Discount).IsRequired().HasDefaultValue(0).HasColumnType("numeric(10,2)");
         builder.Property(sp => sp.TotalItemAmount).IsRequired().HasColumnType("numeric(10,2)");
 
-        builder.Property(sp => sp.ProductId).IsRequired(); 
+        builder.Property(sp => sp.ProductId).IsRequired();
+
+        builder.HasOne(sp => sp.Sale) 
+               .WithMany(s => s.SaleProducts)
+               .HasForeignKey(sp => sp.SaleId) 
+               .OnDelete(DeleteBehavior.Cascade); 
     }
 }

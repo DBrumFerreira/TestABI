@@ -1,14 +1,11 @@
 ﻿using FluentValidation;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale;
 
-/// <summary>
-/// Validator for CreateSaleRequest that defines validation rules for creating a sale.
-/// </summary>
-public class CreateSaleRequestValidator : AbstractValidator<CreateSaleRequest>
+public class UpdateSaleRequestValidator : AbstractValidator<UpdateSaleRequest>
 {
     /// <summary>
-    /// Initializes a new instance of the CreateSaleRequestValidator with defined validation rules.
+    /// Initializes a new instance of the UpdateSaleRequestValidator with defined validation rules.
     /// </summary>
     /// <remarks>
     /// Validation rules include:
@@ -16,8 +13,8 @@ public class CreateSaleRequestValidator : AbstractValidator<CreateSaleRequest>
     /// - Branch: Required, length between 3 and 100 characters.
     /// - Products: Must contain at least one product.
     /// </remarks>
-    public CreateSaleRequestValidator()
-    {
+    public UpdateSaleRequestValidator()
+    {/*
         RuleFor(sale => sale.CustomerName)
             .NotEmpty()
             .Length(3, 100).WithMessage("Customer name must be between 3 and 100 characters.");
@@ -30,7 +27,7 @@ public class CreateSaleRequestValidator : AbstractValidator<CreateSaleRequest>
             .NotEmpty().WithMessage("A sale must include at least one product.")
             .ForEach(product =>
             {
-                product.SetValidator(new CreateSaleProductRequestValidator());
-            });
+                product.SetValidator(new UpdateSaleProductRequestValidator());
+            });*/
     }
 }

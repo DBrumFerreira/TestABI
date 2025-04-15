@@ -1,6 +1,6 @@
-﻿namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
+﻿namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 
-public class SaleProductCommand
+public class UpdateSaleProductCommand
 {
     /// <summary>
     /// Gets or sets the quantity of the product sold.

@@ -18,6 +18,11 @@ public class SaleConfiguration : IEntityTypeConfiguration<Sale>
         builder.Property(s => s.CustomerName).IsRequired().HasMaxLength(100); 
         builder.Property(s => s.Branch).IsRequired().HasMaxLength(100);
         builder.Property(s => s.TotalAmount).IsRequired().HasColumnType("numeric(10,2)"); 
-        builder.Property(s => s.IsCancelled).IsRequired().HasDefaultValue(false); 
+        builder.Property(s => s.IsCancelled).IsRequired().HasDefaultValue(false);
+
+        builder.HasMany(s => s.SaleProducts) 
+               .WithOne(sp => sp.Sale)
+               .HasForeignKey(sp => sp.SaleId)
+               .OnDelete(DeleteBehavior.Cascade);
     }
 }

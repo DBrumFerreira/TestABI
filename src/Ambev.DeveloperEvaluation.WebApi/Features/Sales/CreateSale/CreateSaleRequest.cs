@@ -1,6 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Entities;
-
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
 
 public class CreateSaleRequest
 {
@@ -17,5 +15,5 @@ public class CreateSaleRequest
     /// <summary>
     /// Gets or sets the list of products associated with this sale.
     /// </summary>
-    public ICollection<SaleProductRequest> SaleProducts { get; set; } = [];
+    public ICollection<CreateSaleProductRequest> SaleProducts { get; set; } = [];
 }

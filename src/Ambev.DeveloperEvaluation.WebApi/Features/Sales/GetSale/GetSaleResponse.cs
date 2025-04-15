@@ -1,6 +1,6 @@
-﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
 
-public class CreateSaleResponse
+public class GetSaleResponse
 {
     /// <summary>
     /// Gets or sets the unique identifier of the sale.
@@ -40,5 +40,5 @@ public class CreateSaleResponse
     /// <summary>
     /// Gets or sets the list of products associated with this sale.
     /// </summary>
-    public virtual ICollection<CreateSaleProductResponse> SaleProducts { get; set; } = [];
+    public virtual ICollection<GetSaleProductResponse> SaleProducts { get; set; } = [];
 }

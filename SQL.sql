@@ -46,11 +46,14 @@ CREATE TABLE "SaleProducts" (
 
 INSERT INTO "Products" ("Id", "Name", "Description", "Price", "CreatedAt")
 VALUES
-    (gen_random_uuid(), 'Notebook Gamer', 'Notebook com alto desempenho para jogos, 16GB RAM, SSD 512GB.', 6500.00, NOW()),
-    (gen_random_uuid(), 'Smartphone Pro', 'Smartphone com câmera tripla, 128GB de armazenamento.', 3200.00, NOW()),
-    (gen_random_uuid(), 'Fone de Ouvido Bluetooth', 'Fone de ouvido sem fio com cancelamento de ruído.', 800.00, NOW()),
-    (gen_random_uuid(), 'Monitor 4K Ultra HD', 'Monitor de alta resolução, 27 polegadas, ideal para trabalhos gráficos.', 1800.00, NOW()),
-    (gen_random_uuid(), 'Teclado Mecânico RGB', 'Teclado mecânico com iluminação RGB e switches silenciosos.', 450.00, NOW());
+    (gen_random_uuid(), 'Brahma Chopp', 'Cerveja tipo lager com sabor leve e cremosidade característica, perfeita para festas e churrascos.', 6.50, NOW()),
+    (gen_random_uuid(), 'Skol Pilsen', 'Cerveja Pilsen refrescante e leve, ideal para momentos de descontração.', 6.00, NOW()),
+    (gen_random_uuid(), 'Antarctica Original', 'Cerveja de sabor tradicional e marcante, muito apreciada pelo público brasileiro.', 7.00, NOW()),
+    (gen_random_uuid(), 'Budweiser', 'Cerveja lager americana com sabor equilibrado e aroma de malte.', 9.00, NOW()),
+    (gen_random_uuid(), 'Stella Artois', 'Cerveja belga premium com sabor sofisticado e aroma elegante.', 10.50, NOW()),
+    (gen_random_uuid(), 'Quilmes Cristal', 'Cerveja argentina tipo lager, leve e refrescante, ideal para acompanhar refeições.', 8.50, NOW()),
+    (gen_random_uuid(), 'Labatt Blue', 'Cerveja canadense tipo lager com sabor suave e aroma refrescante.', 9.00, NOW()),
+    (gen_random_uuid(), 'Presidente', 'Cerveja dominicana tipo Pilsen com sabor equilibrado e refrescante.', 8.00, NOW());
 
 
 	

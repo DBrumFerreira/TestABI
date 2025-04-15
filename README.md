@@ -87,31 +87,47 @@ See [Project Structure](/.doc/project-structure.md)
 
 ---
 
-# Documentação da API de Vendas
+# Sales API Documentation
 
-## Introdução
-Esta documentação descreve as operações disponíveis na API de vendas, incluindo como criar, atualizar, cancelar e recuperar vendas. A API foi desenvolvida com base nos princípios de Domain-Driven Design (DDD) e contém regras de negócios específicas para descontos e limites de quantidade.
+## Introduction
+This documentation describes the operations available in the Sales API, including how to create, update, cancel, and retrieve sales. The API was developed based on Domain-Driven Design (DDD) principles and contains specific business rules for discounts and quantity limits.
 
-## Como Rodar
+## How to Run
 
-1. **Pré-requisitos**:
-   - .NET Core SDK instalado.
-   - Banco de dados PostgreSQL configurado.
-   - Ferramentas de gerenciamento de banco de dados como DBeaver ou pgAdmin para gerenciar o PostgreSQL.
+1. **Prerequisites**:
+   - .NET Core SDK installed.
+   - Docker Desktop installed and configured.
+   - PostgreSQL database configured.
+   - Database management tools like DBeaver or pgAdmin to manage PostgreSQL.
 
-2. **Executando a API**:
-   - Clone o repositório do GitHub: `git clone <link-do-repositório>`
-   - Navegue até o diretório do projeto: `cd <diretório-do-projeto>`
-   - Configure a string de conexão do banco de dados no arquivo `appsettings.json`.
-   - Execute o projeto: `dotnet run`
+2. **Running the API**:
+   - Clone the GitHub repository: `git clone <repository-link>`
+   - Navigate to the project directory: `cd <project-directory>`
+   - Configure the database connection string in the `appsettings.json` file.
+   - Run the project: `dotnet run`
+   
+## Database Migrations
+
+The database migrations have been configured to facilitate system development and testing. They include fake product data that can be used to test the application's functionalities without the need to insert real data. This helps ensure the system works as expected before being deployed in a production environment.
+
+### Fake Products
+
+- Fake product data is automatically inserted during the migration process.
+
+The inserted products can be viewed directly in the database using tools like pgAdmin or DBeaver. They are ready to be used in sales.
+
+- **Verification**: Access the database to check product details.
+- **Use in Sales**: Use these products to simulate and test sales transactions in the system.
+
+These products were added to facilitate testing and ensure that sales functionalities work correctly.
 
 ## Endpoints
 
-### Criar Venda
+### Create Sale
 
-- **Método**: `POST`
+- **Method**: `POST`
 - **URL**: `/api/sales`
-- **Corpo da Requisição**:
+- **Request Body**:
 
   ```json
   {
@@ -127,25 +143,26 @@ Esta documentação descreve as operações disponíveis na API de vendas, inclu
       }
     ]
   }
+  ```
 
-- **Regras de Negócio**:
-  - Descontos são aplicados para compras de 4 ou mais itens idênticos.
-  - Compras acima de 20 itens idênticos não são permitidas.
+- **Business Rules**:
+  - Discounts are applied for purchases of 4 or more identical items.
+  - Purchases of more than 20 identical items are not allowed.
 
-### Atualizar Venda
+### Update Sale
 
-- **Método**: `PUT`
+- **Method**: `PUT`
 - **URL**: `/api/sales`
-- **Corpo da Requisição**:
+- **Request Body**:
   
-  Similar ao corpo de criação, com a adição do `saleId` para identificar a venda a ser atualizada.
+  Similar to the creation body, with the addition of `saleId` to identify the sale to be updated.
 
-### Cancelar Venda
+### Cancel Sale
 
-- **Método**: `PATCH`
+- **Method**: `PATCH`
 - **URL**: `/api/sales/{id}/cancel`
-- **Descrição**: Cancela uma venda pelo ID.
-- **Exemplo de Resposta**:
+- **Description**: Cancels a sale by ID.
+- **Sample Response**:
   
   ```json
   {
@@ -154,12 +171,12 @@ Esta documentação descreve as operações disponíveis na API de vendas, inclu
   }
   ```
 
-### Consultar Venda
+### Retrieve Sale
 
-- **Método**: `GET`
+- **Method**: `GET`
 - **URL**: `/api/sales/{id}`
-- **Descrição**: Retorna os detalhes de uma venda pelo ID.
-- **Exemplo de Resposta**:
+- **Description**: Returns the details of a sale by ID.
+- **Sample Response**:
 
   ```json
   {
@@ -182,12 +199,27 @@ Esta documentação descreve as operações disponíveis na API de vendas, inclu
   }
   ```
 
-## Regras de Negócio Principais
+## Main Business Rules
 
-1. **Descontos por Quantidade**:
-   - 10% de desconto para 4 ou mais itens idênticos.
-   - 20% de desconto para 10 a 20 itens idênticos.
-   - Compras acima de 20 itens não são permitidas.
+1. **Quantity Discounts**:
+   - 10% discount for 4 or more identical items.
+   - 20% discount for 10 to 20 identical items.
+   - Purchases over 20 items are not allowed.
 
-2. **Eventos de Venda** (opcional):
-   - Registre eventos de Venda Criada, Modificada e Cancelada, bem como Itens Cancelados, no log de aplicação.
+2. **Sales Events** (optional):
+   - Log Created, Modified, and Canceled Sales events, as well as Canceled Items, in the application log.
+   
+# Note on Unit Tests
+
+## Absence of Unit Tests
+
+Unfortunately, the current project does not include unit tests. Due to a tight deadline and other personal circumstances, it was not possible to implement comprehensive test coverage.
+
+### Reasons for Absence
+
+- **Tight Deadline**: The available time to complete this project was limited, requiring prioritization of core functionalities.
+- **Professional Commitments**: Recent deliverables at my current company required significant time and dedication, limiting my ability to include unit tests.
+- **Surgery Preparations**: I have been preparing for a scheduled surgery on 04/15, and decided to prioritize the necessary rest for the procedure.
+- **Overtime**: I worked until 2 AM to ensure the project was delivered in its current state, balancing professional and personal demands.
+
+Despite the absence of unit tests, efforts were directed to ensure essential functionalities were implemented and manually tested. I plan to add unit tests in future iterations to improve the system's robustness and reliability.

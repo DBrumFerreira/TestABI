@@ -84,3 +84,110 @@ This section includes links to the detailed documentation for the different API 
 This section describes the overall structure and organization of the project files and directories. 
 
 See [Project Structure](/.doc/project-structure.md)
+
+---
+
+# Documentação da API de Vendas
+
+## Introdução
+Esta documentação descreve as operações disponíveis na API de vendas, incluindo como criar, atualizar, cancelar e recuperar vendas. A API foi desenvolvida com base nos princípios de Domain-Driven Design (DDD) e contém regras de negócios específicas para descontos e limites de quantidade.
+
+## Como Rodar
+
+1. **Pré-requisitos**:
+   - .NET Core SDK instalado.
+   - Banco de dados PostgreSQL configurado.
+   - Ferramentas de gerenciamento de banco de dados como DBeaver ou pgAdmin para gerenciar o PostgreSQL.
+
+2. **Executando a API**:
+   - Clone o repositório do GitHub: `git clone <link-do-repositório>`
+   - Navegue até o diretório do projeto: `cd <diretório-do-projeto>`
+   - Configure a string de conexão do banco de dados no arquivo `appsettings.json`.
+   - Execute o projeto: `dotnet run`
+
+## Endpoints
+
+### Criar Venda
+
+- **Método**: `POST`
+- **URL**: `/api/sales`
+- **Corpo da Requisição**:
+
+  ```json
+  {
+    "customerName": "John Doe",
+    "branch": "Main",
+    "saleDate": "2023-10-10T14:48:00.000Z",
+    "products": [
+      {
+        "productId": "guid",
+        "quantity": 5,
+        "unitPrice": 10.0,
+        "discount": 0.0
+      }
+    ]
+  }
+
+- **Regras de Negócio**:
+  - Descontos são aplicados para compras de 4 ou mais itens idênticos.
+  - Compras acima de 20 itens idênticos não são permitidas.
+
+### Atualizar Venda
+
+- **Método**: `PUT`
+- **URL**: `/api/sales`
+- **Corpo da Requisição**:
+  
+  Similar ao corpo de criação, com a adição do `saleId` para identificar a venda a ser atualizada.
+
+### Cancelar Venda
+
+- **Método**: `PATCH`
+- **URL**: `/api/sales/{id}/cancel`
+- **Descrição**: Cancela uma venda pelo ID.
+- **Exemplo de Resposta**:
+  
+  ```json
+  {
+    "success": true,
+    "message": "Sale canceled successfully"
+  }
+  ```
+
+### Consultar Venda
+
+- **Método**: `GET`
+- **URL**: `/api/sales/{id}`
+- **Descrição**: Retorna os detalhes de uma venda pelo ID.
+- **Exemplo de Resposta**:
+
+  ```json
+  {
+    "success": true,
+    "data": {
+      "saleId": "guid",
+      "customerName": "John Doe",
+      "branch": "Main",
+      "saleDate": "2023-10-10T14:48:00.000Z",
+      "products": [
+        {
+          "productId": "guid",
+          "quantity": 5,
+          "unitPrice": 10.0,
+          "discount": 1.0,
+          "totalItemAmount": 45.0
+        }
+      ]
+    }
+  }
+  ```
+
+## Regras de Negócio Principais
+
+1. **Descontos por Quantidade**:
+   - 10% de desconto para 4 ou mais itens idênticos.
+   - 20% de desconto para 10 a 20 itens idênticos.
+   - Compras acima de 20 itens não são permitidas.
+
+2. **Eventos de Venda** (opcional):
+   - Registre eventos de Venda Criada, Modificada e Cancelada, bem como Itens Cancelados, no log de aplicação.

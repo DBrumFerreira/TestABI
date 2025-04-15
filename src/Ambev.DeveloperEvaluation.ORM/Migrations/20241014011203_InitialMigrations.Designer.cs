@@ -62,10 +62,128 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users", (string)null);
-                });
+            });
+
+            modelBuilder.Entity("Ambev.DeveloperEvaluation.Domain.Entities.Sale", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid")
+                    .HasDefaultValueSql("gen_random_uuid()");
+
+                b.Property<int>("SaleNumber")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("serial");
+
+                b.Property<DateTime>("SaleDate")
+                    .HasColumnType("timestamp");
+
+                b.Property<string>("CustomerName")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("character varying(100)");
+
+                b.Property<string>("Branch")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("character varying(100)");
+
+                b.Property<decimal>("TotalAmount")
+                    .HasColumnType("numeric(10,2)");
+
+                b.Property<bool>("IsCancelled")
+                    .HasColumnType("boolean")
+                    .HasDefaultValue(false);
+
+                b.HasKey("Id");
+
+                b.ToTable("Sales", (string)null);
+            });
+
+            modelBuilder.Entity("Ambev.DeveloperEvaluation.Domain.Entities.Product", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid")
+                    .HasDefaultValueSql("gen_random_uuid()");
+
+                b.Property<string>("Name")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("character varying(100)");
+
+                b.Property<string>("Description")
+                    .HasColumnType("text");
+
+                b.Property<decimal>("Price")
+                    .HasColumnType("numeric(10,2)");
+
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("timestamp")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                b.Property<DateTime?>("UpdatedAt")
+                    .HasColumnType("timestamp");
+
+                b.HasKey("Id");
+
+                b.ToTable("Products", (string)null);
+            });
+
+            modelBuilder.Entity("Ambev.DeveloperEvaluation.Domain.Entities.SaleProduct", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid")
+                    .HasDefaultValueSql("gen_random_uuid()");
+
+                b.Property<Guid>("SaleId")
+                    .HasColumnType("uuid");
+
+                b.Property<Guid>("ProductId")
+                    .HasColumnType("uuid");
+
+                b.Property<int>("Quantity")
+                    .HasColumnType("int");
+
+                b.Property<decimal>("UnitPrice")
+                    .HasColumnType("numeric(10,2)");
+
+                b.Property<decimal>("Discount")
+                    .HasColumnType("numeric(10,2)")
+                    .HasDefaultValue(0m);
+
+                b.Property<decimal>("TotalItemAmount")
+                    .HasColumnType("numeric(10,2)");
+
+                b.HasKey("Id");
+
+                b.HasIndex("SaleId");
+
+                b.HasIndex("ProductId");
+
+                b.ToTable("SaleProducts", (string)null);
+
+                b.HasOne("Ambev.DeveloperEvaluation.Domain.Entities.Sale", null)
+                    .WithMany()
+                    .HasForeignKey("SaleId")
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                b.HasOne("Ambev.DeveloperEvaluation.Domain.Entities.Product", null)
+                    .WithMany()
+                    .HasForeignKey("ProductId")
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
 #pragma warning restore 612, 618
         }
     }

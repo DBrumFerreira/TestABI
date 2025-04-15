@@ -194,5 +194,3 @@ Esta documentação descreve as operações disponíveis na API de vendas, inclu
 
 Esta documentação fornece uma visão geral das funcionalidades básicas e regras da API de vendas. Para detalhes completos e exemplos de implementação, consulte o código fonte no repositório do projeto.
 ```
-
-Esse texto em Markdown pode ser usado em repositórios de código como GitHub para fornecer documentação clara e estruturada para usuários e desenvolvedores.

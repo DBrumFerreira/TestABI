@@ -87,9 +87,6 @@ See [Project Structure](/.doc/project-structure.md)
 
 ---
 
-Aqui está a documentação convertida para o formato Markdown:
-
-```markdown
 # Documentação da API de Vendas
 
 ## Introdução
@@ -130,7 +127,6 @@ Esta documentação descreve as operações disponíveis na API de vendas, inclu
       }
     ]
   }
-  ```
 
 - **Regras de Negócio**:
   - Descontos são aplicados para compras de 4 ou mais itens idênticos.
